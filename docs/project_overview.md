@@ -1,8 +1,6 @@
 # Project Overview
 
-This notebook documents the end-to-end workflow for detecting **African Easterly Waves (AEWs)** using deep learning on reanalysis data. AEWs are synoptic-scale disturbances that influence rainfall variability and tropical cyclone formation over West Africa and the Atlantic. Identifying them accurately is important for improving weather prediction and climate research.
-
-The workflow integrates **ERA5 atmospheric reanalysis variables** (e.g., temperature, wind, humidity, potential vorticity) at surface and pressure levels. Data are preprocessed into spatial patches around AEW events and matched with background (non-AEW) samples to form a labeled dataset.
+This notebook documents the end-to-end workflow for detecting **African Easterly Waves (AEWs)** using deep learning on reanalysis data.
 
 The modeling pipeline consists of:
 
@@ -17,8 +15,6 @@ The modeling pipeline consists of:
 
 - **Evaluation and interpretation**  
   Performance is assessed with confusion matrices, precision-recall metrics, and saliency maps that highlight spatial feature importance for AEW detection.  
-
-The notebook is designed for **reproducibility and scalability**, with configurable parameters for variables, pressure levels, and subsets. It serves as both a research record and a template for future experiments.
 
 
 
@@ -331,11 +327,7 @@ The transformation is applied to each channel across all samples and spatial dim
 
 Note: The function uses `data_` as a global variable instead of a local argument, which may need correction for clarity and reusability.
 
-```
 
-Here’s the full Markdown block for **Cell [11]: `minmax()` – Min-Max Normalization**, including the code and explanation:
-
-````markdown
 ## Cell [11]: minmax() – Min-Max Normalization
 
 ```python
@@ -362,11 +354,6 @@ This normalization method helps ensure that all variables have a similar scale, 
 
 As with the z-score function, it uses `data_` instead of `data` as an argument, which should be corrected to avoid scope issues.
 
-```
-
-Here’s the full Markdown block for **Cell [12]: `random_split()` – Train-Test Split**, including the code and explanation:
-
-````markdown
 ## Cell [12]: random_split() – Train-Test Split
 
 ```python
@@ -396,11 +383,7 @@ This function randomly splits the dataset into training and testing sets.
 
 This is useful for quickly testing models without relying on external libraries like `sklearn.model_selection.train_test_split()`.
 
-```
 
-Here’s the full Markdown block for **Cell [13]: `pick_loss()` – Select Loss Function**, including the code and explanation:
-
-````markdown
 ## Cell [13]: pick_loss() – Select Loss Function
 
 ```python
@@ -1070,6 +1053,7 @@ def visualize_prediction_map(df, threshold=0.5):
 ````
 
 This function creates a geographical scatter plot of predicted AEW events using latitude and longitude information from the predictions DataFrame. It first applies a threshold to the predicted probability of the positive class (`p1`) to create binary predictions — anything above the threshold is considered an AEW event. These binary predictions are then visualized as colored points on a map, with red and blue indicating different predicted classes. The plot helps assess the spatial distribution of model predictions and is especially useful for spotting geographic biases or regional model behavior. The visualization is a helpful tool when working with climate data where spatial relationships matter.
+
 
 
 
